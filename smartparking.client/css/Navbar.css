@@ -1,0 +1,84 @@
+/* Navbar full container */
+.navbar {
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Left section */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Logo */
+.logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Text part */
+.app-text .title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ff6a00;
+}
+
+    .app-text .title span {
+        color: #3b81f6; /* Blue gradient color */
+    }
+
+.subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    margin-top: -2px;
+}
+
+/* Right section */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Notification */
+.notification {
+    position: relative;
+    font-size: 20px;
+}
+
+.badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #ff5722;
+    color: white;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* Profile circle */
+.profile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5864ff, #c76cff);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+}

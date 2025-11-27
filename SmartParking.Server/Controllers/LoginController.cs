@@ -13,14 +13,12 @@ namespace SmartParking.Server.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest req)
         {
-            // Dummy user check (replace with SQL later)
             if (req.Email != "test@gmail.com" || req.Password != "123456")
             {
                 return Unauthorized(new { message = "Invalid credentials" });
             }
 
-            // Create JWT
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("THIS_IS_SUPER_SECRET_KEY_123"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("THIS_IS_SUPER_SECRET_KEY_123_456789"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
@@ -34,7 +32,6 @@ namespace SmartParking.Server.Controllers
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-            // Add as HttpOnly cookie
             Response.Cookies.Append("jwt", jwt, new CookieOptions
             {
                 HttpOnly = true,
