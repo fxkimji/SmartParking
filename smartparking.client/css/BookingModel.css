@@ -1,0 +1,245 @@
+/* Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Modal Box */
+.modal-box {
+    background: #fff;
+    width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 14px;
+    padding: 25px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-top: 6px solid transparent;
+    border-image: linear-gradient(to right, #4f8aff, #b450ff, #ff6537) 1;
+    animation: popup 0.25s ease;
+}
+
+@keyframes popup {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Close Button */
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-title {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.modal-subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-top: -6px;
+}
+
+/* Parking Info Card */
+.parking-info-card {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f3f5ff;
+    border-radius: 14px;
+}
+
+.parking-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.parking-address {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 14px;
+}
+
+.parking-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.slot-badge,
+.rate-badge,
+.availability-badge {
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.slot-badge {
+    background: #004cff;
+    color: white;
+}
+
+.rate-badge {
+    background: #e4eeff;
+    color: #004cff;
+}
+
+.availability-badge {
+    background: #e9ffe9;
+    color: #118b1b;
+}
+
+/* Form Elements */
+.modal-form label {
+    margin-top: 18px;
+    display: block;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d6d8e0;
+    border-radius: 10px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+.hint {
+    font-size: 12px;
+    color: #777;
+}
+
+.duration-wrapper {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.duration-tag {
+    background: #ffeadd;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #ff6a00;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Payment Options */
+.payment-row {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.payment-box {
+    flex: 1;
+    padding: 16px;
+    border-radius: 12px;
+    border: 2px solid #ddd;
+    background: #fafafa;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+    .payment-box.selected {
+        border-color: #6a2cff;
+        background: #f2e7ff;
+    }
+
+/* Summary Box */
+.payment-summary-box {
+    margin-top: 25px;
+    background: #f7f5ff;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #e5defb;
+}
+
+.summary-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #7b33ff;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.summary-divider {
+    height: 1px;
+    background: #dcd3ff;
+    margin: 12px 0;
+}
+
+.total {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.total-amount {
+    color: #6d2cff;
+    font-weight: 700;
+}
+
+/* Footer Buttons */
+.modal-actions {
+    display: flex;
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.cancel-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    cursor: pointer;
+    background: #fff;
+}
+
+.pay-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(to right, #5d60ff, #a556ff, #ff6b37);
+}

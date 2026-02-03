@@ -1,14 +1,31 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using SmartParking.Server.Repository;
+using SmartParking.Server.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var key = Encoding.UTF8.GetBytes("SuperSecureKeyChangeThis123!@#");
+// 🔥 ADD CONTROLLERS (ONLY ONCE)
+builder.Services.AddControllers();
 
-// Add Authentication
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer("Bearer", options =>
+// 🔥 DEPENDENCY INJECTION
+builder.Services.AddScoped<IParkingRepository, ParkingRepository>();
+builder.Services.AddScoped<IParkingService, ParkingService>();
+builder.Services.AddScoped<BookingRepository>();
+
+// 🔥 JWT CONFIGURATION
+var jwtKey = builder.Configuration["Jwt:Key"];
+if (string.IsNullOrEmpty(jwtKey))
+{
+    throw new Exception("JWT key not configured in appsettings.json");
+}
+
+var key = Encoding.UTF8.GetBytes(jwtKey);
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
@@ -16,9 +33,11 @@ builder.Services.AddAuthentication("Bearer")
             ValidateAudience = false,
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateLifetime = true
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero
         };
 
+        // 🔥 READ JWT FROM COOKIE
         options.Events = new JwtBearerEvents
         {
             OnMessageReceived = context =>
@@ -28,33 +47,41 @@ builder.Services.AddAuthentication("Bearer")
             }
         };
     });
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowReact",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:5173")
-                  .AllowAnyHeader()
-                  .AllowAnyMethod()
-                  .AllowCredentials();
-        });
-});
-
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddControllers();
+// 🔥 CORS (REACT)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
+
+// 🔥 REMOVE THIS ❌ (DO NOT USE SINGLETON CONNECTIONS)
+// builder.Services.AddSingleton<NpgsqlConnection>(...);
+
+// 🔥 SWAGGER
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-app.UseCors("AllowReact");
 
-app.UseSwagger();
-app.UseSwaggerUI();
+// 🔥 DEV TOOLS
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseHttpsRedirection();
 
+// 🔥 IMPORTANT ORDER
+app.UseCors("ReactApp");
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -1,7 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useEffect } from "react";
 
-
-// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -11,13 +10,14 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         async function checkSession() {
             try {
-                const res = await fetch("https://localhost:7000/api/login/user", {
-                    credentials: "include",
-                });
+                const res = await fetch(
+                    "https://localhost:7237/api/auth/me",
+                    { credentials: "include" }
+                );
 
                 if (res.ok) {
                     const data = await res.json();
-                    setUser(data.email);
+                    setUser(data);   
                 } else {
                     setUser(null);
                 }

@@ -1,11 +1,9 @@
-import Navbar from "../components/Navbar";
-
+import UserView from "../Components/UserView"
 function HomePage() {
 
     return (
         <>
-        <Navbar />
-            <h2>Home</h2>
+        <UserView/>
         </>
     );
 }
