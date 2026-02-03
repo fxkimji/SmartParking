@@ -1,0 +1,120 @@
+/* ===== NAVBAR ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* LEFT SIDE */
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-box {
+    width: 36px;
+    height: 36px;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff6a00; /* orange like screenshot */
+}
+
+.brand-sub {
+    font-size: 12px;
+    color: #555;
+}
+
+/* RIGHT SIDE */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* BELL ICON */
+.bell {
+    position: relative;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.bell-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #ff3b3b;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* USER AVATAR */
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #7b61ff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* GUEST */
+.guest {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-btn {
+    background: #ff6a00;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .login-btn:hover {
+        background: #e55d00;
+    }
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logout-btn {
+    background: #f3f3f3;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+    .logout-btn:hover {
+        background: #e0e0e0;
+    }

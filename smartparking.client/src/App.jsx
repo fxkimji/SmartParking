@@ -1,19 +1,21 @@
+import { AuthProvider } from "./context/AuthContext";
+import "leaflet/dist/leaflet.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/LoginPage";
-//import Home from "./pages/Home";
-//import Parking from "./pages/Parking";
-//import Profile from "./pages/Profile";
-//import AdminDashboard from "./pages/AdminDashboard";
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import ProfilePage from "./Components/ProfilePage";
+import Layout from "./pages/Layout";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Login />} />
-                {/*<Route path="/home" element={<Home />} />*/}
-                {/*<Route path="/parking" element={<Parking />} />*/}
-                {/*<Route path="/profile" element={<Profile />} />*/}
-                {/*<Route path="/admin" element={<AdminDashboard />} />*/}
+                <Route path="/login" element={<LoginPage />} />
+
+                <Route element={<Layout />}>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/profile" element={<ProfilePage />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );
